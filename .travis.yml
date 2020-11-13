@@ -1,3 +1,4 @@
+---
 sudo: required
 services:
   - docker
@@ -13,12 +14,10 @@ after_success:
   - docker build -t y0j/multi-nginx ./nginx
   - docker build -t y0j/multi-server ./server
   - docker build -t y0j/multi-worker ./worker
-
-# Login to docker CLI
-- echo "$DOCKER_PASSWORD" |  docker login -u "$DOCKER_ID" --password-stdin
-
-# Take images and push them to the docker hub
-- docker push y0j/multi-client
-- docker push y0j/multi-nginx
-- docker push y0j/multi-server
-- docker push y0j/multi-worker
+  # Login to docker CLI
+  - echo "$DOCKER_PASSWORD" |  docker login -u "$DOCKER_ID" --password-stdin
+  # Take images and push them to the docker hub
+  - docker push y0j/multi-client
+  - docker push y0j/multi-nginx
+  - docker push y0j/multi-server
+  - docker push y0j/multi-worker
